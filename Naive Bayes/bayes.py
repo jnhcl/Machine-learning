@@ -33,13 +33,16 @@ def tfIdf(trainMatrix,setMatrix):
     b = sum(trainMatrix,axis=0)
     tc = sum(setMatrix,axis=0)
     c = array(tc,dtype='float')
+   # print d,max(c),min(c),d/max(c)
     weight = []
     for i in range(m):
         a = trainMatrix[:,i]
         tf = a/b[i]
         weight.append(tf * log(d/(c[i])))
     returnVec = array(weight).transpose()
-    print n,m,shape(returnVec)
+    #print n,m,shape(returnVec)
+    returnVec += ones(array((n,m)))
+    print returnVec.dtype   
     return returnVec
     
 
