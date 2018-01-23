@@ -30,19 +30,16 @@ def tfIdf(trainMatrix,setMatrix):
     n = len(trainMatrix)
     m = len(trainMatrix[0])
     d = [n]*n;
-    b = sum(trainMatrix,axis=0)
+    tb = sum(trainMatrix,axis=0)
     tc = sum(setMatrix,axis=0)
+    b = array(tb,dtype='float')
     c = array(tc,dtype='float')
-   # print d,max(c),min(c),d/max(c)
     weight = []
     for i in range(m):
         a = trainMatrix[:,i]
         tf = a/b[i]
         weight.append(tf * log(d/(c[i])))
     returnVec = array(weight).transpose()
-    #print n,m,shape(returnVec)
-    returnVec += ones(array((n,m)))
-    print returnVec.dtype   
     return returnVec
     
 
@@ -75,8 +72,8 @@ def classifyNB(vec2Classify, p0Vec, p1Vec, pClass1):
         return 0
 
 def spamTest():
-    trainFile = '/home/zsy/Documents/Python/test/train.csv'
-    testFile = '/home/zsy/Documents/Python/test/test.csv'
+    trainFile = './train.csv'
+    testFile = './test.csv'
     import csv
     docList=[]; classList = []; fullText =[]
     in1 = open(trainFile);in1.readline()
